@@ -1,38 +1,15 @@
 <html>
 <head>
   <title>Fireworks Demo</title>
-  <style type="text/css">
-  html, body {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    overflow: hidden;
-  }
-
-  #library {
-    display: none;
-  }
-
-  canvas {
-    -webkit-transform: translateZ(0);
-  }
-</style>
-</head>
-<body>
-  <aside id="library">
-    <img src="images/nightsky.png" id="nightsky" />
-    <img src="images/big-glow.png" id="big-glow" />
-    <img src="images/small-glow.png" id="small-glow" />
-  </aside>
-
-  <script type="text/javascript" src="creativeFireworks.js"></script>
   <script type="text/javascript" src="fireworks.js"></script>
   <script type="text/javascript">
-    fireworks.setup()
-    fireworks.launchEvery(1, {})
-  </script>
+    fireworks.display(function() {
 
+      fireworks.launchEvery(1, {})
+
+    });
+  </script>
+</head>
+<body>
 </body>
 </html>
