@@ -3,6 +3,26 @@ coder-dojo-fireworks
 
 Bonfire Night session for Coder Dojo London
 
+Getting Started
+---------------
+
+Visit http://jsbin.com/asoqad/1/edit and start playing.
+
+
+DSL
+---
+
+    // launch a firework
+    fireworks.launch()
+
+    // set some options
+    fireworks.launch({x: 100, colour: 'red'})
+
+    // delay a launch
+    fireworks.launchIn(2, {colour: 'yellow'})
+
+    // launch every x seconds
+    fireworks.launchEvery(2, {x: 50})
 
 
 Tasks
