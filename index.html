@@ -33,7 +33,7 @@
   <script type="text/javascript">
     fireworks.setup()
     fireworks.onMove(function(x, y) {
-            fireworks.launch({ x: x, y: y })
+            fireworks.explodeAt(x, y, FireworkExplosions.smallCircle)
     });
   </script>
 

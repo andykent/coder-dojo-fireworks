@@ -22,6 +22,25 @@ window.fireworks = f = {
     window.setInterval(f.launchFn(opts), seconds*1000);
   },
 
+  explodeAt: function(x, y, type) {
+    type(new Particle(
+        // position
+        { x: x, y: y },
+
+        // target
+        { y: y },
+
+        // velocity
+        { x: 1, y: 1 },
+
+        // color
+        Math.floor(Math.random() * 100) * 12,
+
+        // use physics
+        true)
+    );
+  },
+
   setBackground: function(url) {
 
   },
