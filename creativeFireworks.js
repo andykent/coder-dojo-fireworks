@@ -67,8 +67,8 @@ var Fireworks = (function() {
 
     // add the canvas in
     document.body.appendChild(mainCanvas);
-    document.addEventListener('mouseup', createFirework, true);
-    document.addEventListener('touchend', createFirework, true);
+    // document.addEventListener('mouseup', createFirework, true);
+    // document.addEventListener('touchend', createFirework, true);
 
     // and now we set off
     update();
@@ -158,9 +158,11 @@ var Fireworks = (function() {
         // if the firework isn't using physics
         // then we know we can safely(!) explode it... yeah.
         if(!firework.usePhysics) {
-
-          if(Math.random() < 0.8) {
+          rand = Math.random();
+          if (rand > 0.8) {
             FireworkExplosions.star(firework);
+          } else if (rand > 0.6) {
+            FireworkExplosions.smallCircle(firework);
           } else {
             FireworkExplosions.circle(firework);
           }
@@ -359,6 +361,29 @@ var FireworkExplosions = {
     while(count--) {
 
       var randomVelocity = 4 + Math.random() * 4;
+      var particleAngle = count * angle;
+
+      Fireworks.createParticle(
+        firework.pos,
+        null,
+        {
+          x: Math.cos(particleAngle) * randomVelocity,
+          y: Math.sin(particleAngle) * randomVelocity
+        },
+        firework.color,
+        true);
+    }
+  },
+
+  /**
+   * Explodes in a roughly circular fashion
+   */
+  smallCircle: function(firework) {
+
+    var count = 100;
+    var angle = (Math.PI * 2) / count;
+    while(count--) {
+      var randomVelocity = Math.random() * 4;
       var particleAngle = count * angle;
 
       Fireworks.createParticle(
