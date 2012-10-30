@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
   <title>Fireworks Demo</title>
@@ -31,7 +32,9 @@
   <script type="text/javascript" src="fireworks.js"></script>
   <script type="text/javascript">
     fireworks.setup()
-    fireworks.launchEvery(1, {})
+    fireworks.onMove(function(x, y) {
+            fireworks.launch({ x: x, y: y })
+    });
   </script>
 
 </body>

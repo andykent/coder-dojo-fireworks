@@ -1,6 +1,4 @@
 window.fireworks = f = {
-
-
   // DSL
 
   setup: function() {
@@ -29,13 +27,16 @@ window.fireworks = f = {
   },
 
   onClick: function(fn) {
-
+    document.addEventListener('mouseup', function(e) {
+        fn(e.layerX, e.layerY);
+    }, true);
   },
 
   onMove: function(fn) {
-
+    document.addEventListener('mousemove', function(e) {
+        fn(e.layerX, e.layerY);
+    }, true);
   },
-
 
   // utils
   canvas: Fireworks.canvas,
