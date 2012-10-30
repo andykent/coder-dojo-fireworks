@@ -1,6 +1,4 @@
 window.fireworks = f = {
-
-
   // DSL
 
   display: function(fn) {
@@ -16,11 +14,11 @@ window.fireworks = f = {
 
   launch: function(opts) {
     var opts = opts || {};
-    // var x = opts.x || f.canvas.width / 2;
-    // var y = opts.y || f.canvas.height;
+    var x = opts.x;
+    var y = opts.y;
     var colour = opts.colour || '';
     // Firework.createParticle(pos, target, vel, color, usePhysics);
-    Fireworks.createParticle();
+    Fireworks.createParticle({x: x, y: y});
   },
 
   launchIn: function(seconds, opts) {
@@ -36,16 +34,19 @@ window.fireworks = f = {
   },
 
   onClick: function(fn) {
-
+    document.addEventListener('mouseup', function(e) {
+        fn(e.layerX, e.layerY);
+    }, true);
   },
 
   onMove: function(fn) {
-
+    document.addEventListener('mousemove', function(e) {
+        fn(e.layerX, e.layerY);
+    }, true);
   },
 
-
-
   // utils
+  canvas: Fireworks.canvas,
 
   launchFn: function(opts) {
     return function() { f.launch(opts) };
