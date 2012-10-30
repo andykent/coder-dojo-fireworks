@@ -381,7 +381,7 @@ var FireworkExplosions = {
    */
   smallCircle: function(firework) {
 
-    var count = 100;
+    var count = 10;
     var angle = (Math.PI * 2) / count;
     while(count--) {
       var randomVelocity = Math.random() * 4;

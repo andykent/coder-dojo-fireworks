@@ -10,6 +10,7 @@ window.fireworks = f = {
       f.loadImages();
       f.loadJS('creativeFireworks.js', function() {
         Fireworks.initialize();
+        f.canvas = Fireworks.canvas;
         fn.call(this, f);
       });
     }
@@ -32,6 +33,16 @@ window.fireworks = f = {
     window.setInterval(f.launchFn(opts), seconds*1000);
   },
 
+  explodeAt: function(x, y, type) {
+    f.getExplosionType(type)(new Particle(
+        { x: x, y: y }, // position
+        { y: y }, // target
+        { x: 1, y: 1 }, // velocity
+        Math.floor(Math.random() * 100) * 12, // color
+        true) // use physics
+    );
+  },
+
   setBackground: function(url) {
 
   },
@@ -49,8 +60,6 @@ window.fireworks = f = {
   },
 
   // utils
-  canvas: Fireworks.canvas,
-
   launchFn: function(opts) {
     return function() { f.launch(opts) };
   },
@@ -76,5 +85,13 @@ window.fireworks = f = {
     aside.setAttribute('id', 'library');
     aside.innerHTML = '<img src="'+SERVER+'images/nightsky.png" id="nightsky" /><img src="'+SERVER+'images/big-glow.png" id="big-glow" /><img src="'+SERVER+'images/small-glow.png" id="small-glow" />';
     document.getElementsByTagName("body")[0].appendChild(aside);
+  },
+
+  getExplosionType: function(type) {
+    return {
+        'circle': FireworkExplosions.circle,
+        'star': FireworkExplosions.star,
+        'smallCircle': FireworkExplosions.smallCircle,
+    }[type];
   },
 };
