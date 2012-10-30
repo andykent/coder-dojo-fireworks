@@ -1,8 +1,16 @@
 window.fireworks = f = {
   // DSL
 
-  setup: function() {
-    Fireworks.initialize();
+  display: function(fn) {
+    window.onload = function() {
+      f.loadCSS('styles.css');
+      f.loadImages();
+      f.loadJS('creativeFireworks.js', function() {
+        Fireworks.initialize();
+        f.canvas = Fireworks.canvas;
+        fn.call(this, f);
+      });
+    }
   },
 
   launch: function(opts) {
@@ -23,21 +31,12 @@ window.fireworks = f = {
   },
 
   explodeAt: function(x, y, type) {
-    type(new Particle(
-        // position
-        { x: x, y: y },
-
-        // target
-        { y: y },
-
-        // velocity
-        { x: 1, y: 1 },
-
-        // color
-        Math.floor(Math.random() * 100) * 12,
-
-        // use physics
-        true)
+    f.getExplosionType(type)(new Particle(
+        { x: x, y: y }, // position
+        { y: y }, // target
+        { x: 1, y: 1 }, // velocity
+        Math.floor(Math.random() * 100) * 12, // color
+        true) // use physics
     );
   },
 
@@ -58,9 +57,38 @@ window.fireworks = f = {
   },
 
   // utils
-  canvas: Fireworks.canvas,
-
   launchFn: function(opts) {
-    return function() { f.launch(opts); };
-  }
+    return function() { f.launch(opts) };
+  },
+
+  loadCSS: function(filename) {
+    var css = document.createElement("link");
+    css.setAttribute("rel", "stylesheet");
+    css.setAttribute("type", "text/css");
+    css.setAttribute("href", filename);
+    document.getElementsByTagName("head")[0].appendChild(css);
+  },
+
+  loadJS: function(filename, fn) {
+    var js = document.createElement('script')
+    js.setAttribute("type","text/javascript")
+    js.setAttribute("src", filename)
+    js.onload = fn;
+    document.getElementsByTagName("head")[0].appendChild(js);
+  },
+
+  loadImages: function() {
+    var aside = document.createElement('aside');
+    aside.setAttribute('id', 'library');
+    aside.innerHTML = '<img src="images/nightsky.png" id="nightsky" /><img src="images/big-glow.png" id="big-glow" /><img src="images/small-glow.png" id="small-glow" />';
+    document.getElementsByTagName("body")[0].appendChild(aside);
+  },
+
+  getExplosionType: function(type) {
+    return {
+        'circle': FireworkExplosions.circle,
+        'star': FireworkExplosions.star,
+        'smallCircle': FireworkExplosions.smallCircle,
+    }[type];
+  },
 };
