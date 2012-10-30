@@ -219,7 +219,8 @@ var Fireworks = (function() {
   // declare an API
   return {
     initialize: initialize,
-    createParticle: createParticle
+    createParticle: createParticle,
+    canvas: mainContext
   };
 
 })();
