@@ -2,7 +2,7 @@ window.fireworks = f = {
   // DSL
 
   // SERVER: '',
-  SERVER: 'https://raw.github.com/andykent/coder-dojo-fireworks/master/',
+  SERVER: 'http://coder-dojo-london.s3-website-eu-west-1.amazonaws.com/fireworks/',
 
   display: function(fn) {
     window.onload = function() {
@@ -68,14 +68,14 @@ window.fireworks = f = {
     var css = document.createElement("link");
     css.setAttribute("rel", "stylesheet");
     css.setAttribute("type", "text/css");
-    css.setAttribute("href", SERVER + filename);
+    css.setAttribute("href", f.SERVER + filename);
     document.getElementsByTagName("head")[0].appendChild(css);
   },
 
   loadJS: function(filename, fn) {
     var js = document.createElement('script')
     js.setAttribute("type","text/javascript")
-    js.setAttribute("src", SERVER + filename)
+    js.setAttribute("src", f.SERVER + filename)
     js.onload = fn;
     document.getElementsByTagName("head")[0].appendChild(js);
   },
@@ -83,7 +83,7 @@ window.fireworks = f = {
   loadImages: function() {
     var aside = document.createElement('aside');
     aside.setAttribute('id', 'library');
-    aside.innerHTML = '<img src="'+SERVER+'images/nightsky.png" id="nightsky" /><img src="'+SERVER+'images/big-glow.png" id="big-glow" /><img src="'+SERVER+'images/small-glow.png" id="small-glow" />';
+    aside.innerHTML = '<img src="'+f.SERVER+'images/nightsky.png" id="nightsky" /><img src="'+f.SERVER+'images/big-glow.png" id="big-glow" /><img src="'+f.SERVER+'images/small-glow.png" id="small-glow" />';
     document.getElementsByTagName("body")[0].appendChild(aside);
   },
 
