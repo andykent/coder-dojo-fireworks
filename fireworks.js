@@ -3,8 +3,17 @@ window.fireworks = f = {
 
   // DSL
 
-  launch: function(opts) {
+  setup: function() {
+    Fireworks.initialize();
+  },
 
+  launch: function(opts) {
+    var opts = opts || {};
+    // var x = opts.x || f.canvas.width / 2;
+    // var y = opts.y || f.canvas.height;
+    var colour = opts.colour || '';
+    // Firework.createParticle(pos, target, vel, color, usePhysics);
+    Fireworks.createParticle();
   },
 
   launchIn: function(seconds, opts) {
