@@ -19,23 +19,6 @@ window.fireworks = f = {
     return new f.Firework(args);
   },
 
-  launch: function(opts) {
-    var opts = opts || {};
-    var x = opts.x;
-    var y = opts.y;
-    var colour = opts.colour || '';
-    // Firework.createParticle(pos, target, vel, color, usePhysics);
-    Fireworks.createParticle({x: x, y: y}, null, null, colour);
-  },
-
-  launchIn: function(seconds, opts) {
-    window.setTimeout(f.launchFn(opts), seconds*1000);
-  },
-
-  launchEvery: function(seconds, opts) {
-    window.setInterval(f.launchFn(opts), seconds*1000);
-  },
-
   explodeAt: function(opts) {
     opts = f.optDefaults(opts);
     console.log(opts);
@@ -47,10 +30,6 @@ window.fireworks = f = {
         opts.colour, // colour
         true) // use physics
     );
-  },
-
-  setBackground: function(url) {
-
   },
 
   onClick: function(fn) {
@@ -66,9 +45,6 @@ window.fireworks = f = {
   },
 
   // utils
-  launchFn: function(opts) {
-    return function() { f.launch(opts) };
-  },
 
   loadCSS: function(filename) {
     var css = document.createElement("link");
@@ -104,10 +80,10 @@ window.fireworks = f = {
 
   optDefaults: function(opts) {
     if (typeof(opts.x) === 'undefined')
-        opts.x = window.innerWidth;
+        opts.x = window.innerWidth / 2;
 
     if (typeof(opts.y) === 'undefined')
-        opts.y = window.innerHeight;
+        opts.y = 0;
 
     if (typeof(opts.target_x) === 'undefined')
         opts.target_x = Math.random() * window.innerWidth;
@@ -127,6 +103,12 @@ window.fireworks = f = {
     } else {
         opts.type = f.getExplosionType(opts.type);
     }
+
+    if (typeof(opts.repeat) === 'undefined')
+        opts.repeat = 1;
+
+    if (typeof(opts.wait) === 'undefined')
+        opts.wait = 0;
 
     return opts;
   },
@@ -149,12 +131,12 @@ window.fireworks = f = {
 
   Firework: function(opts) {
     var self = this;
-    var opts = opts || {};
+    var opts = f.optDefaults(opts);
     this.x = opts.x;
     this.y = opts.y
-    this.colour = opts.colour || '';
-    this.repeat = opts.repeat || 1;
-    this.wait = opts.wait || 0;
+    this.colour = opts.colour;
+    this.repeat = opts.repeat;
+    this.wait = opts.wait;
 
     this.launch = function() {
       for(var i=0; i < self.repeat; i++) {
