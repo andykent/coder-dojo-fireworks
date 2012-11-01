@@ -44,6 +44,8 @@ window.fireworks = f = {
     }, true);
   },
 
+  explode_at: this.explodeAt,
+
   // utils
 
   loadCSS: function(filename) {
@@ -138,22 +140,22 @@ window.fireworks = f = {
     this.repeat = opts.repeat;
     this.wait = opts.wait;
 
+    var perform = function() {
+      Fireworks.createParticle({x: self.x, y: self.y}, null, null, self.colour);
+    };
+
+    var performIn = function(seconds) {
+      window.setTimeout(function() { perform() }, seconds*1000);
+    };
+
     this.launch = function() {
       for(var i=0; i < self.repeat; i++) {
-        self.performIn(this.wait*i);
+        performIn(this.wait*i);
       }
     };
 
-    this.launchIn = function(seconds) {
+    this.launch_in = this.launchIn = function(seconds) {
       window.setTimeout(function() { self.launch() }, seconds*1000);
-    };
-
-    this.performIn = function(seconds) {
-      window.setTimeout(function() { self.perform() }, seconds*1000);
-    };
-
-    this.perform = function() {
-      Fireworks.createParticle({x: self.x, y: self.y}, null, null, self.colour);
     };
   }
 };
