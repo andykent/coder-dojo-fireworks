@@ -13,16 +13,16 @@ DSL
 ---
 
     // launch a firework
-    fireworks.launch()
+    fireworks.make().launch()
 
     // set some options
-    fireworks.launch({x: 100, colour: 'red'})
+    fireworks.make({ colour:'red' }).launch()
 
     // delay a launch
-    fireworks.launchIn(2, {colour: 'yellow'})
+    fireworks.make().launch_in(2)
 
-    // launch every x seconds
-    fireworks.launchEvery(2, {x: 50})
+    // launch every 2 seconds 3 times in a row starting in 3 seconds
+    fireworks.make({repeat: 3, wait: 2}).launch_in(3)
 
 
 Tasks
