@@ -44,3 +44,13 @@ draw on canvas, follow mouse, sparkler
 Click events to trigger stuff
 
 stars
+
+
+Thanks
+------
+
+This project makes heavy use of the creative.js Fireworks library by Paul Lewis. Thanks for making it awesome.
+You can find the full repo and write up at:
+
+https://github.com/paullewis/
+http://creativejs.com/tutorials/creating-fireworks/
