@@ -22,7 +22,7 @@ window.fireworks = f = {
     var y = opts.y;
     var colour = opts.colour || '';
     // Firework.createParticle(pos, target, vel, color, usePhysics);
-    Fireworks.createParticle({x: x, y: y});
+    Fireworks.createParticle({x: x, y: y}, null, null, colour);
   },
 
   launchIn: function(seconds, opts) {
@@ -33,12 +33,14 @@ window.fireworks = f = {
     window.setInterval(f.launchFn(opts), seconds*1000);
   },
 
-  explodeAt: function(x, y, type) {
-    f.getExplosionType(type)(new Particle(
-        { x: x, y: y }, // position
-        { y: y }, // target
+  explodeAt: function(opts) {
+    opts = f.optDefaults(opts);
+
+    f.getExplosionType(opts.type || 'star')(new Particle(
+        { x: opts.x, y: opts.y }, // position
+        { x: opts.target_x , y: opts.target_y }, // target
         { x: 1, y: 1 }, // velocity
-        Math.floor(Math.random() * 100) * 12, // color
+        opts.colour, // colour
         true) // use physics
     );
   },
@@ -93,5 +95,24 @@ window.fireworks = f = {
         'star': FireworkExplosions.star,
         'smallCircle': FireworkExplosions.smallCircle,
     }[type];
+  },
+
+  optDefaults: function(opts) {
+    if (typeof(opts.x) === 'undefined')
+        opts.x = window.innerWidth;
+
+    if (typeof(opts.y) === 'undefined')
+        opts.y = window.innerHeight;
+
+    if (typeof(opts.target_x) === 'undefined')
+        opts.target_x = Math.random() * window.innerWidth;
+
+    if (typeof(opts.target_y) === 'undefined')
+        opts.target_y = Math.random() * window.innerHeight;
+
+    if (typeof(opts.colour) === 'undefined')
+        opts.colour = Math.floor(Math.random() * 100) * 12;
+
+    return opts;
   },
 };
