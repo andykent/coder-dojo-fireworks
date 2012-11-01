@@ -1,8 +1,7 @@
 window.fireworks = f = {
   // DSL
 
-  // SERVER: '',
-  SERVER: 'http://coder-dojo-london.s3-website-eu-west-1.amazonaws.com/fireworks/',
+  SERVER: window.location.protocol == 'file:' ? '' : 'http://coder-dojo-london.s3-website-eu-west-1.amazonaws.com/fireworks/',
 
   display: function(fn) {
     window.onload = function() {
