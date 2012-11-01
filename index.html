@@ -5,9 +5,8 @@
   <script type="text/javascript" src="fireworks.js"></script>
   <script type="text/javascript">
     fireworks.display(function() {
-        fireworks.onClick(function(x, y) {
-            fireworks.explodeAt({ x: x, y: y, colour: 'red' })
-        });
+      fireworks.make({repeat: 3, wait: 2}).launch()
+      fireworks.make({repeat: 20, wait: 0.5}).launchIn(5)
     });
   </script>
 </head>

@@ -15,6 +15,10 @@ window.fireworks = f = {
     }
   },
 
+  make: function(args) {
+    return new f.Firework(args);
+  },
+
   launch: function(opts) {
     var opts = opts || {};
     var x = opts.x;
@@ -137,4 +141,32 @@ window.fireworks = f = {
   getColour: function(colour) {
     return f.realColourHSLValues[colour.toLowerCase()];
   },
+
+  Firework: function(opts) {
+    var self = this;
+    var opts = opts || {};
+    this.x = opts.x;
+    this.y = opts.y
+    this.colour = opts.colour || '';
+    this.repeat = opts.repeat || 1;
+    this.wait = opts.wait || 0;
+
+    this.launch = function() {
+      for(var i=0; i < self.repeat; i++) {
+        self.performIn(this.wait*i);
+      }
+    };
+
+    this.launchIn = function(seconds) {
+      window.setTimeout(function() { self.launch() }, seconds*1000);
+    };
+
+    this.performIn = function(seconds) {
+      window.setTimeout(function() { self.perform() }, seconds*1000);
+    };
+
+    this.perform = function() {
+      Fireworks.createParticle({x: self.x, y: self.y}, null, null, self.colour);
+    };
+  }
 };
