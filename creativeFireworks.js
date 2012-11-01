@@ -179,6 +179,8 @@ var Fireworks = (function() {
    * Creates a new particle / firework
    */
   function createParticle(pos, target, vel, color, usePhysics) {
+    if (typeof(color) === 'undefined')
+        color = Math.floor(Math.random() * 100) * 12;
 
     pos = pos || {};
     target = target || {};

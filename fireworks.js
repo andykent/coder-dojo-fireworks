@@ -34,8 +34,9 @@ window.fireworks = f = {
 
   explodeAt: function(opts) {
     opts = f.optDefaults(opts);
+    console.log(opts);
 
-    f.getExplosionType(opts.type || 'star')(new Particle(
+    f.getExplosionType(opts.type)(new Particle(
         { x: opts.x, y: opts.y }, // position
         { x: opts.target_x , y: opts.target_y }, // target
         { x: 1, y: 1 }, // velocity
@@ -109,9 +110,31 @@ window.fireworks = f = {
     if (typeof(opts.target_y) === 'undefined')
         opts.target_y = Math.random() * window.innerHeight;
 
-    if (typeof(opts.colour) === 'undefined')
+    if (typeof(opts.colour) === 'undefined') {
         opts.colour = Math.floor(Math.random() * 100) * 12;
+    } else {
+        opts.colour = f.getColour(opts.colour);
+    }
+
+    if (typeof(opts.type) === 'undefined')
+        opts.type = 'star';
 
     return opts;
+  },
+
+  realColourHSLValues: {
+    'red': 1,
+    'orange': 20,
+    'yellow': 40,
+    'green': 80,
+    'cyan': 120,
+    'blue': 160,
+    'violet': 180,
+    'magenta': 200,
+    'pink': 220
+  },
+
+  getColour: function(colour) {
+    return f.realColourHSLValues[colour.toLowerCase()];
   },
 };
