@@ -40,7 +40,7 @@ window.fireworks = f = {
     opts = f.optDefaults(opts);
     console.log(opts);
 
-    f.getExplosionType(opts.type)(new Particle(
+    opts.type(new Particle(
         { x: opts.x, y: opts.y }, // position
         { x: opts.target_x , y: opts.target_y }, // target
         { x: 1, y: 1 }, // velocity
@@ -98,6 +98,7 @@ window.fireworks = f = {
         'circle': FireworkExplosions.circle,
         'star': FireworkExplosions.star,
         'smallCircle': FireworkExplosions.smallCircle,
+        'smallStar': FireworkExplosions.smallStar,
     }[type];
   },
 
@@ -120,8 +121,12 @@ window.fireworks = f = {
         opts.colour = f.getColour(opts.colour);
     }
 
-    if (typeof(opts.type) === 'undefined')
+    if (typeof(opts.type) === 'undefined') {
         opts.type = 'star';
+        opts.type = f.getExplosionType(opts.type);
+    } else {
+        opts.type = f.getExplosionType(opts.type);
+    }
 
     return opts;
   },
