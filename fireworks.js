@@ -45,6 +45,8 @@ window.fireworks = f = {
   },
 
   explode_at: this.explodeAt,
+  on_click: this.onClick,
+  on_move: this.onMove,
 
   // utils
 
