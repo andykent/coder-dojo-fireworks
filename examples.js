@@ -1,65 +1,69 @@
-canvas
-
 
 // 1
-fireworks.launch()
+fireworks.make().launch()
+
 
 
 // 2
-fireworks.launch({ colour: 'red' })
+fireworks.make({ colour:'red' }).launch()
+
 
 
 // 3
-fireworks.launch({ speed: 50 })
+fireworks.make({ x:100 }).launch()
 
 
-// 4
-fireworks.launch({ angle: 180 })
+
+// 4 a
+fireworks.make({ x:100, height: 400 }).launch()
+
+
+
+// 4 b
+fireworks.make({ x:300, height: 400, direction: -2 }).launch()
+fireworks.make({ x:300, height: 400, direction: 2 }).launch()
+
 
 
 // 5
-fireworks.launch({ x: 50 })
+fireworks.make({ colour:'red' }).launch()
+fireworks.make({ colour:'blue' }).launch()
 
 
 // 6
-function launchMyRocket(x) {
- fireworks.launch({x:x})
-}
+fireworks.make({ colour:'red' }).launch()
+fireworks.make({ colour:'blue' }).launch_in(2)
 
-[20,30,40].each(lauchMyRocket)
 
 
 // 7
-fireworks.launchIn(1, {})
-fireworks.launchEvery(1, {})
+fireworks.make({ repeat:5 }).launch()
+
 
 
 // 8
-fireworks.setBackground('http://blah.com')
+fireworks.make({ repeat:5, wait:2 }).launch()
 
-
-// DISPLAY!
 
 
 // 9
-function launchHere(x,y) {
-  fireworks.launch({ x: x, y: y})
-}
+fireworks.make({
+  colour:'red',
+  x: 150,
+  repeat: 5,
+  wait: 4
+}).launch(1)
 
-fireworks.onClick(launchHere)
+fireworks.make({
+  colour:'blue',
+  x: window.innerWidth - 150,
+  repeat: 5,
+  wait: 4
+}).launch_in(2)
+
 
 
 // 10
-function drawHere(x,y) {
-  fireworks.spark({ x: x, y: y})
-}
-
-fireworks.onMove(drawHere)
-
-
-// 11
-function drawHere(x,y) {
-  fireworks.spark({ x: x, y: y, colour: '#ff0000'})
-}
-
-fireworks.onMove(drawHere)
+fireworks.on_click(function(x,y) { fireworks.explode_at({ x:x, y:y }) })
+fireworks.on_click(function(x,y) { fireworks.explode_at({ x:x, y:y, type: 'star' }) })
+fireworks.on_move(function(x,y) { fireworks.explode_at({ x:x, y:y }, type: 'smallCircle') })
