@@ -23,7 +23,6 @@ window.fireworks = f = {
 
   explodeAt: function(opts) {
     opts = f.optDefaults(opts);
-    console.log(opts);
 
     opts.type(new Particle(
         { x: opts.x, y: opts.y }, // position
@@ -122,14 +121,14 @@ window.fireworks = f = {
 
   realColourHSLValues: {
     'red': 1,
-    'orange': 20,
-    'yellow': 40,
-    'green': 80,
-    'cyan': 120,
-    'blue': 160,
-    'violet': 180,
-    'magenta': 200,
-    'pink': 220
+    'orange': 20 * 5,
+    'yellow': 40 * 5,
+    'green': 80 * 5,
+    'cyan': 120 * 5,
+    'blue': 160 * 5,
+    'violet': 180 * 5,
+    'magenta': 200 * 5,
+    'pink': 220 * 5
   },
 
   getColour: function(colour) {
