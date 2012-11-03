@@ -5,9 +5,7 @@
   <script type="text/javascript" src="fireworks.js"></script>
   <script type="text/javascript">
     fireworks.display(function() {
-        fireworks.onClick(function(x, y) {
-            fireworks.explodeAt({ x: x, y: y, colour: 'pink', type: 'star' })
-        });
+        fireworks.make({ x: 0, height: 800, direction: 10 }).launch()
     });
   </script>
 </head>

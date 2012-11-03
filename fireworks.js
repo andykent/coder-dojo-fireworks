@@ -89,7 +89,7 @@ window.fireworks = f = {
         opts.x = window.innerWidth / 2;
 
     if (typeof(opts.y) === 'undefined')
-        opts.y = 0;
+        opts.y = window.innerHeight;
 
     if (typeof(opts.target_x) === 'undefined')
         opts.target_x = Math.random() * window.innerWidth;

@@ -190,20 +190,20 @@ var Fireworks = (function() {
       new Particle(
         // position
         {
-          x: pos.x || viewportWidth * 0.5,
-          y: pos.y || viewportHeight + 10
+          x: typeof pos.x === 'undefined' ? viewportWidth * 0.5 : pos.x,
+          y: typeof pos.y === 'undefined' ? viewportHeight + 10 : pos.y
         },
 
         // target
         {
-          x: target.x || Math.random() * viewportWidth,
-          y: target.y || Math.random() * viewportHeight
+          x: typeof pos.x === 'undefined' ? Math.random() * viewportWidth : target.x,
+          y: typeof pos.y === 'undefined' ? Math.random() * viewportHeight : target.y
         },
 
         // velocity
         {
-          x: vel.x || Math.random() * 3 - 1.5,
-          y: vel.y || 0
+          x: typeof vel.x === 'undefined' ? Math.random() * 3 - 1.5 : vel.x,
+          y: typeof vel.y === 'undefined' ? 0 : vel.y
         },
 
         color || Math.floor(Math.random() * 100) * 12,
@@ -247,13 +247,13 @@ var Particle = function(pos, target, vel, marker, usePhysics) {
   this.color    = marker;
 
   this.pos = {
-    x: pos.x || 0,
-    y: pos.y || 0
+    x: typeof pos.x === 'undefined' ? 0 : pos.x,
+    y: typeof pos.y === 'undefined' ? 0 : pos.y
   };
 
   this.vel = {
-    x: vel.x || 0,
-    y: vel.y || 0
+    x: typeof vel.x === 'undefined' ? 0 : vel.x,
+    y: typeof vel.y === 'undefined' ? 0 : vel.y
   };
 
   this.lastPos = {
@@ -262,11 +262,10 @@ var Particle = function(pos, target, vel, marker, usePhysics) {
   };
 
   this.target = {
-    y: target.y || 0
+    y: typeof target.y === 'undefined' ? 0 : target.y
   };
 
   this.usePhysics = usePhysics || false;
-
 };
 
 /**

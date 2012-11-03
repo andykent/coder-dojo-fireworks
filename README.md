@@ -28,12 +28,12 @@ DSL
 Tasks
 -----
 
-can you make a red firework?
-can you make a firework go from bottom left to top/bottom right?
-can you make 2 go at once?
-loop for fireworks
-fireworks at different times
-
+- can you make a red firework?
+- can you make a firework go from bottom left to top/bottom right?
+- can you make 2 go at once?
+- loop for fireworks
+- fireworks at different times
+ 
 Firework Display
 
 background image, skyline
