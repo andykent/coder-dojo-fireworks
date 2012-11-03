@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fireworks Demo</title>
+  <script type="text/javascript" src="fireworks.js"></script>
+  <script type="text/javascript">
+    fireworks.display(function() {
+
+      // shoot up
+      fireworks.make({x: window.innerWidth/2, direction: 0.01, height: 600}).launch()
+
+      // crossover
+      fireworks.make({x: 300, direction: 8, height: 400, repeat: 2, wait: 2}).launch_in(2)
+      fireworks.make({x: window.innerWidth-300, direction: -8, height: 400, repeat: 2, wait: 2}).launch_in(3)
+
+      // line left
+      fireworks.after(10, function() {
+        for(var i=0; i<window.innerWidth; i+=100) {
+          fireworks.make({x: i, direction: 0.01, height: 600}).launch_in((i/100)/5);
+        }
+      });
+
+      // line right
+      fireworks.after(20, function() {
+        for(var i=0; i<window.innerWidth; i+=100) {
+          fireworks.make({x: i, direction: 0.01, height: 600}).launch_in(((window.innerWidth-i)/100)/5);
+        }
+      });
+
+      // line altogether
+      fireworks.after(30, function() {
+        for(i=0;i<window.innerWidth; i+=200) {
+          fireworks.make({x: i, direction: 0.01, height: 600}).launch()
+          fireworks.make({x: i+100, direction: 0.01, height: 300}).launch()
+        }
+      });
+    });
+  </script>
+</head>
+<body>
+</body>
+</html>
