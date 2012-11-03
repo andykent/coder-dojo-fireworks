@@ -128,7 +128,7 @@ window.fireworks = f = {
   },
 
   realColourHSLValues: {
-    'red': 1,
+    'red': 0,
     'orange': 20 * 5,
     'yellow': 40 * 5,
     'green': 80 * 5,

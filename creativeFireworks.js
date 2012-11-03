@@ -206,7 +206,7 @@ var Fireworks = (function() {
           y: typeof vel.y === 'undefined' ? 0 : vel.y
         },
 
-        color || Math.floor(Math.random() * 100) * 12,
+        typeof color === 'undefined' ? Math.floor(Math.random() * 100) * 12 : color,
 
         usePhysics)
     );
