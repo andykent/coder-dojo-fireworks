@@ -8,9 +8,11 @@ window.fireworks = f = {
       f.loadCSS('styles.css');
       f.loadImages();
       f.loadJS('creativeFireworks.js', function() {
-        Fireworks.initialize();
-        f.canvas = Fireworks.canvas;
-        fn.call(this, f);
+        setTimeout(function() {
+          Fireworks.initialize();
+          f.canvas = Fireworks.canvas;
+          fn.call(this, f);
+        }, 1000);
       });
     }
   },
@@ -44,9 +46,9 @@ window.fireworks = f = {
     }, true);
   },
 
-  explode_at: this.explodeAt,
-  on_click: this.onClick,
-  on_move: this.onMove,
+  explode_at: function(fn) { f.explodeAt(fn) },
+  on_click: function(fn) { f.onClick(fn) },
+  on_move: function(fn) { f.onMove(fn) },
 
   // utils
 
@@ -83,6 +85,7 @@ window.fireworks = f = {
   },
 
   optDefaults: function(opts) {
+    var opts = opts || {};
     if (typeof(opts.x) === 'undefined')
         opts.x = window.innerWidth / 2;
 
@@ -137,13 +140,19 @@ window.fireworks = f = {
     var self = this;
     var opts = f.optDefaults(opts);
     this.x = opts.x;
-    this.y = opts.y
+    this.y = opts.y;
+    this.direction = opts.direction;
+    this.height = opts.height ? window.innerHeight - opts.height : null;
     this.colour = opts.colour;
     this.repeat = opts.repeat;
     this.wait = opts.wait;
 
     var perform = function() {
-      Fireworks.createParticle({x: self.x, y: self.y}, null, null, self.colour);
+      Fireworks.createParticle(
+        {x: self.x, y: self.y}, // position
+        {y: self.height}, // target height
+        {x:self.direction}, // velocity
+        self.colour); // colour hue
     };
 
     var performIn = function(seconds) {
