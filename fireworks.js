@@ -128,15 +128,15 @@ window.fireworks = f = {
   },
 
   realColourHSLValues: {
-    'red': 0,
-    'orange': 20 * 5,
-    'yellow': 40 * 5,
-    'green': 80 * 5,
-    'cyan': 120 * 5,
-    'blue': 160 * 5,
-    'violet': 180 * 5,
-    'magenta': 200 * 5,
-    'pink': 220 * 5
+    'red': 1,
+    'orange': 10*12,
+    'yellow': 20*12,
+    'green': 30*12,
+    'cyan': 40*12,
+    'blue': 50*12,
+    'violet': 60*12,
+    'magenta': 70*12,
+    'pink': 80*12
   },
 
   getColour: function(colour) {
