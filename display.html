@@ -15,21 +15,21 @@
 
       // line left
       fireworks.after(10, function() {
-        for(var i=0; i<window.innerWidth; i+=100) {
+        for(var i=1; i<window.innerWidth; i+=100) {
           fireworks.make({x: i, direction: 0.01, height: 600}).launch_in((i/100)/5);
         }
       });
 
       // line right
       fireworks.after(20, function() {
-        for(var i=0; i<window.innerWidth; i+=100) {
+        for(var i=1; i<window.innerWidth; i+=100) {
           fireworks.make({x: i, direction: 0.01, height: 600}).launch_in(((window.innerWidth-i)/100)/5);
         }
       });
 
       // line altogether
       fireworks.after(30, function() {
-        for(i=0;i<window.innerWidth; i+=200) {
+        for(i=1;i<window.innerWidth; i+=200) {
           fireworks.make({x: i, direction: 0.01, height: 600}).launch()
           fireworks.make({x: i+100, direction: 0.01, height: 300}).launch()
         }
