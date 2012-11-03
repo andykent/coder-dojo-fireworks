@@ -21,6 +21,14 @@ window.fireworks = f = {
     return new f.Firework(args);
   },
 
+  after: function(seconds, fn) {
+    window.setTimeout(fn, seconds*1000);
+  },
+
+  every: function(seconds, fn) {
+    window.setInterval(fn, seconds*1000);
+  },
+
   explodeAt: function(opts) {
     opts = f.optDefaults(opts);
 
@@ -162,10 +170,12 @@ window.fireworks = f = {
       for(var i=0; i < self.repeat; i++) {
         performIn(this.wait*i);
       }
+      return self;
     };
 
     this.launch_in = this.launchIn = function(seconds) {
       window.setTimeout(function() { self.launch() }, seconds*1000);
+      return self;
     };
   }
 };
